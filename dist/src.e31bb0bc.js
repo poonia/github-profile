@@ -26036,7 +26036,7 @@ function (_Component) {
           className: "repo-component__repolink"
         }, _react.default.createElement("i", {
           className: "octicon icon-star"
-        }), " ", repo.stargazers_count), _react.default.createElement("a", {
+        }), " ", repo.stargazers_count), repo.forks_count > 0 && _react.default.createElement("a", {
           className: "repo-component__repolink",
           href: repo.forks_url
         }, _react.default.createElement("i", {
