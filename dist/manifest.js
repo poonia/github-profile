@@ -119,8 +119,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"manifest.json":[function(require,module,exports) {
 module.exports = {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Github Profile",
+  "name": "Your Profile Website",
   "icons": [{
     "src": "favicon.ico",
     "sizes": "64x64 32x32 24x24 16x16",
@@ -159,7 +159,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58655" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60470" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

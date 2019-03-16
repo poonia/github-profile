@@ -25832,6 +25832,16 @@ function (_Component) {
   _createClass(Profile, [{
     key: "render",
     value: function render() {
+      console.log('Profile=> ', this.props.user);
+      var _this$props$user = this.props.user,
+          avatar_url = _this$props$user.avatar_url,
+          bio = _this$props$user.bio,
+          login = _this$props$user.login,
+          name = _this$props$user.name,
+          company = _this$props$user.company,
+          blog = _this$props$user.blog,
+          location = _this$props$user.location,
+          email = _this$props$user.email;
       return _react.default.createElement("div", {
         id: "card-user"
       }, _react.default.createElement("div", {
@@ -25840,41 +25850,43 @@ function (_Component) {
         className: "avatar"
       }, _react.default.createElement("img", {
         id: "UserAvatar",
-        src: "http://www.alcoholandyouni.com/wp-content/uploads/2013/01/team4.jpg",
-        alt: "..."
+        src: avatar_url,
+        alt: name
       })), _react.default.createElement("div", {
         className: "text"
       }, _react.default.createElement("h3", {
         rel: "name"
-      }, "John Doe"), _react.default.createElement("p", {
+      }, name), company && _react.default.createElement("p", {
+        rel: "company"
+      }, company), bio && _react.default.createElement("p", {
         rel: "bio"
-      }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.")), _react.default.createElement("div", {
+      }, bio)), _react.default.createElement("div", {
         className: "user-details-list"
       }, _react.default.createElement("div", {
         className: "user-details-list-item",
         "data-user-name": true
       }, _react.default.createElement("i", {
-        class: "octicon icon-mark-github"
+        className: "octicon icon-mark-github"
       }), _react.default.createElement("a", {
         className: "user-details-list-item-content",
         rel: "username",
-        href: "https://github.com/anson0370"
-      }, "@anson0370")), _react.default.createElement("div", {
+        href: "https://github.com/".concat(login)
+      }, "@", login)), email && _react.default.createElement("div", {
         className: "user-details-list-item",
         "data-user-email": true
       }, _react.default.createElement("i", {
-        class: "octicon icon-mail"
+        className: "octicon icon-mail"
       }), _react.default.createElement("a", {
         className: "user-details-list-item-content",
-        href: "mailto:anson0370@gmail.com"
-      }, "anson0370@gmail.com")), _react.default.createElement("div", {
+        href: "mailto:{email}"
+      }, email)), location && _react.default.createElement("div", {
         className: "user-details-list-item",
         "data-user-location": true
       }, _react.default.createElement("i", {
-        class: "octicon icon-location"
+        className: "octicon icon-location"
       }), _react.default.createElement("span", {
         className: "user-details-list-item-content"
-      }, "Hangzhou. China "))));
+      }, location))));
     }
   }]);
 
@@ -26000,34 +26012,37 @@ function (_Component) {
   _createClass(Repository, [{
     key: "render",
     value: function render() {
+      var repos = this.props.repos;
       return _react.default.createElement("div", {
         className: "repo-flex-container"
-      }, _react.default.createElement("div", {
-        className: "repo-component"
-      }, _react.default.createElement("div", {
-        className: "repo-component-head"
-      }, _react.default.createElement("h1", {
-        className: "repo-component-title"
-      }, _react.default.createElement("a", {
-        className: "repo-component--repolink",
-        href: "#"
-      }, _react.default.createElement("i", {
-        class: "octicon icon-repo"
-      }), _react.default.createElement("span", null, "anson0370 /"), " alfred-numbersystem-convertor"))), _react.default.createElement("div", {
-        className: "repo-component-detail"
-      }, "An alfred workflow for number system conert. Code that'll help you kickstart a personal website that showcases your work as a software developer."), _react.default.createElement("div", {
-        className: "repo-component-meta"
-      }, _react.default.createElement("a", {
-        href: "#",
-        className: "repo-component__repolink"
-      }, _react.default.createElement("i", {
-        class: "octicon icon-star"
-      }), " 16"), _react.default.createElement("a", {
-        className: "repo-component__repolink",
-        href: "#"
-      }, _react.default.createElement("i", {
-        class: "octicon icon-git-branch"
-      }), "1"))));
+      }, repos.map(function (repo) {
+        return !repo.fork && _react.default.createElement("div", {
+          className: "repo-component"
+        }, _react.default.createElement("div", {
+          className: "repo-component-head"
+        }, _react.default.createElement("h1", {
+          className: "repo-component-title"
+        }, _react.default.createElement("a", {
+          className: "repo-component--repolink",
+          href: repo.html_url
+        }, _react.default.createElement("i", {
+          className: "octicon icon-repo"
+        }), repo.full_name))), _react.default.createElement("div", {
+          className: "repo-component-detail"
+        }, repo.description), _react.default.createElement("div", {
+          className: "repo-component-meta"
+        }, _react.default.createElement("a", {
+          href: repo.stargazers_url,
+          className: "repo-component__repolink"
+        }, _react.default.createElement("i", {
+          className: "octicon icon-star"
+        }), " ", repo.stargazers_count), _react.default.createElement("a", {
+          className: "repo-component__repolink",
+          href: repo.forks_url
+        }, _react.default.createElement("i", {
+          className: "octicon icon-git-branch"
+        }), repo.forks_count)));
+      }));
     }
   }]);
 
@@ -26072,27 +26087,92 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // import { Profile, Description, Repository } from '../components';
+// 
 var App =
 /*#__PURE__*/
 function (_Component) {
   _inherits(App, _Component);
 
-  function App() {
+  function App(props) {
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    _this.state = {
+      error: null,
+      isLoaded: false,
+      profileDetails: {},
+      userName: null,
+      repos: null
+    };
+    return _this;
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var userName = window.location.host.split(".")[0];
+      this.getUserDetails(userName);
+      this.getUserRepo(userName);
+    }
+  }, {
+    key: "getUserDetails",
+    value: function getUserDetails(userName) {
+      var _this2 = this;
+
+      fetch("https://api.github.com/users/".concat(userName)).then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        _this2.setState({
+          isLoaded: true,
+          profileDetails: result,
+          userName: userName
+        });
+      }, function (error) {
+        _this2.setState({
+          isLoaded: true,
+          userName: userName,
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "getUserRepo",
+    value: function getUserRepo(userName) {
+      var _this3 = this;
+
+      fetch("https://api.github.com/users/".concat(userName, "/repos")).then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        console.log('===>', result);
+
+        _this3.setState({
+          isLoaded: true,
+          repos: result
+        });
+      }, function (error) {
+        _this3.setState({
+          isLoaded: true,
+          error: error
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log('=====>>>>>>', this.state.repos);
       return _react.default.createElement("div", {
         className: "container"
       }, _react.default.createElement("aside", {
         className: "aside-bio"
-      }, _react.default.createElement(_Profile.Profile, null)), _react.default.createElement("main", {
+      }, _react.default.createElement(_Profile.Profile, {
+        user: this.state.profileDetails
+      })), this.state.repos && _react.default.createElement("main", {
         className: "main-details"
-      }, _react.default.createElement(_Description.Description, null), _react.default.createElement(_Repository.Repository, null)));
+      }, _react.default.createElement(_Description.Description, null), _react.default.createElement(_Repository.Repository, {
+        repos: this.state.repos
+      })));
     }
   }]);
 
@@ -26256,7 +26336,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58655" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60470" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,18 +3,80 @@ import { Profile } from "../components/Profile";
 import { Description } from "../components/Description";
 import { Repository } from "../components/Repository";
 // import { Profile, Description, Repository } from '../components';
+// 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      profileDetails: {},
+      userName: null,
+      repos: null
+    };
+  }
+
+  componentDidMount() {
+    let userName = window.location.host.split(".")[0];
+    this.getUserDetails(userName);
+    this.getUserRepo(userName);
+  }
+
+  getUserDetails(userName) {
+    fetch(`https://api.github.com/users/${userName}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            profileDetails: result,
+            userName
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            userName,
+            error
+          });
+        }
+      );
+  }
+  
+  getUserRepo(userName) {
+    fetch(`https://api.github.com/users/${userName}/repos`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log('===>',result)
+          this.setState({
+            isLoaded: true,
+            repos: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+  }
+
   render() {
+    console.log('=====>>>>>>',  this.state.repos);
     return (
       <div className="container">
         <aside className="aside-bio">
-          <Profile></Profile>
+          <Profile user={this.state.profileDetails}></Profile>
         </aside>
-        <main className="main-details">
-          <Description></Description>
-          <Repository></Repository>
-        </main>
+        { this.state.repos &&
+          <main className="main-details">
+            <Description></Description>
+            <Repository repos={this.state.repos}></Repository>
+          </main>
+        }
       </div>
     );
   }
