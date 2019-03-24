@@ -1483,11 +1483,10 @@ a:hover {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .aside-bio {
-  background: #ddd;
+  background: #fff;
   display: flex;
 }
 
@@ -1509,57 +1508,6 @@ a:hover {
 }
 
 /* main part */
-.repo-flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-.repo-flex-container .repo-component {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #e1e4e8;
-  border-radius: 5px;
-  margin: 15px;
-  padding: 10px;
-  background: #fff;
-}
-.repo-flex-container .repo-component .repo-component-head {
-  display: flex;
-  flex-direction: row;
-}
-.repo-flex-container .repo-component .repo-component-head h1 {
-  font-size: 16px;
-  line-height: 1.25;
-}
-.repo-flex-container .repo-component .repo-component-head h1 a {
-  line-height: 1.25;
-}
-.repo-flex-container .repo-component .repo-component-head .v-align-middle {
-  vertical-align: middle !important;
-}
-.repo-flex-container .repo-component .repo-component-head svg {
-  margin-right: 5px;
-}
-.repo-flex-container .repo-component .repo-component-detail {
-  flex: 1 0 auto;
-  min-height: 0;
-  padding: 15px 0;
-}
-.repo-flex-container .repo-component .repo-component-meta {
-  display: flex;
-  flex-direction: row;
-}
-.repo-flex-container .repo-component .repo-component-meta .repo-component__repolink {
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  color: #000;
-}
-.repo-flex-container .repo-component .repo-component-meta .repo-component__repolink .octicon {
-  margin-right: 5px;
-}
-
 /* iPads and above*/
 @media only screen and (min-device-width: 768px) {
   .container {
@@ -1570,8 +1518,8 @@ a:hover {
   }
 
   .aside-bio {
-    flex-basis: 25%;
     align-self: stretch;
+    width: 25%;
   }
 
   .main-details {
@@ -1586,7 +1534,7 @@ a:hover {
 /* user card */
 #card-user {
   transition: all 0.6s ease;
-  display: inline-block;
+  width: 100%;
   cursor: pointer;
   background-color: #fff;
   overflow: hidden;
@@ -1640,6 +1588,64 @@ a:hover {
 #card-user .user-details-list .user-details-list-item .user-details-list-item-content {
   align-content: center;
   padding-left: 7px;
+}
+.repo-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.repo-flex-container .repo-component {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e1e4e8;
+  border-radius: 5px;
+  margin: 15px;
+  padding: 10px;
+  background: #fff;
+  min-width: 250px;
+  width: 100%;
+}
+.repo-flex-container .repo-component .repo-component-head {
+  display: flex;
+  flex-direction: row;
+}
+.repo-flex-container .repo-component .repo-component-head h1 {
+  font-size: 16px;
+  line-height: 1.25;
+}
+.repo-flex-container .repo-component .repo-component-head h1 a {
+  line-height: 1.25;
+}
+.repo-flex-container .repo-component .repo-component-head .v-align-middle {
+  vertical-align: middle !important;
+}
+.repo-flex-container .repo-component .repo-component-head svg {
+  margin-right: 5px;
+}
+.repo-flex-container .repo-component .repo-component-detail {
+  flex: 1 0 auto;
+  padding: 15px 0;
+  min-height: 80px;
+}
+.repo-flex-container .repo-component .repo-component-meta {
+  display: flex;
+  flex-direction: row;
+}
+.repo-flex-container .repo-component .repo-component-meta .repo-component__repolink {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+.repo-flex-container .repo-component .repo-component-meta .repo-component__repolink .octicon {
+  margin-right: 5px;
+}
+.repo-flex-container .repo-component .repo-component-meta .repo-component__lang {
+  border: 1px solid #2271d9;
+  font-size: 11px;
+  padding: 3px 7px 4px;
+  border-radius: 16px;
 }
 
 /*# sourceMappingURL=/src.e31bb0bc.css.map */

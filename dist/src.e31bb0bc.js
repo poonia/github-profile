@@ -25848,7 +25848,7 @@ function (_Component) {
         className: "header"
       }), _react.default.createElement("div", {
         className: "avatar"
-      }, _react.default.createElement("img", {
+      }, avatar_url && _react.default.createElement("img", {
         id: "UserAvatar",
         src: avatar_url,
         alt: name
@@ -26031,12 +26031,15 @@ function (_Component) {
           className: "repo-component-detail"
         }, repo.description), _react.default.createElement("div", {
           className: "repo-component-meta"
-        }, _react.default.createElement("a", {
+        }, repo.language && _react.default.createElement("a", {
+          href: repo.languages_url,
+          className: "repo-component__repolink repo-component__lang"
+        }, repo.language), repo.stargazers_count > 0 && _react.default.createElement("a", {
           href: repo.stargazers_url,
           className: "repo-component__repolink"
         }, _react.default.createElement("i", {
           className: "octicon icon-star"
-        }), " ", repo.stargazers_count), _react.default.createElement("a", {
+        }), " ", repo.stargazers_count), repo.forks_count > 0 && _react.default.createElement("a", {
           className: "repo-component__repolink",
           href: repo.forks_url
         }, _react.default.createElement("i", {
@@ -26164,7 +26167,7 @@ function (_Component) {
       console.log('=====>>>>>>', this.state.repos);
       return _react.default.createElement("div", {
         className: "container"
-      }, _react.default.createElement("aside", {
+      }, this.state.profileDetails && _react.default.createElement("aside", {
         className: "aside-bio"
       }, _react.default.createElement(_Profile.Profile, {
         user: this.state.profileDetails
@@ -26336,7 +26339,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60470" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64686" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -22,13 +22,23 @@ export class Repository extends Component {
                   {repo.description}
                 </div>
                 <div className="repo-component-meta">
-                  <a href={repo.stargazers_url} className="repo-component__repolink">
-                    <i className="octicon icon-star"></i> {repo.stargazers_count}
-                  </a>
-                  <a className="repo-component__repolink" href={repo.forks_url}>
-                    <i className="octicon icon-git-branch"></i>
-                    {repo.forks_count}
-                  </a>
+                  {repo.language &&
+                    <a href={repo.languages_url} className="repo-component__repolink repo-component__lang">
+                      {repo.language}
+                    </a>
+                  }
+                  {repo.stargazers_count > 0 &&
+                    <a href={repo.stargazers_url} className="repo-component__repolink">
+                      <i className="octicon icon-star"></i> {repo.stargazers_count}
+                    </a>
+                  }
+                  {repo.forks_count > 0 &&
+                    <a className="repo-component__repolink" href={repo.forks_url}>
+                      <i className="octicon icon-git-branch"></i>
+                      {repo.forks_count}
+                    </a>
+                  }
+
                 </div>
               </div>
           ))

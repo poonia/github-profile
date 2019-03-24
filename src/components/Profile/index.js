@@ -9,7 +9,9 @@ export class Profile extends Component {
       <div id="card-user">
         <div className="header"></div>
         <div className="avatar">
-          <img id="UserAvatar" src={avatar_url} alt={name} />
+          {avatar_url &&
+            <img id="UserAvatar" src={avatar_url} alt={name} />
+          }
         </div>
         <div className="text">
           <h3 rel="name">{name}</h3>

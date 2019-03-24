@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Profile } from "../components/Profile";
 import { Description } from "../components/Description";
 import { Repository } from "../components/Repository";
-// import { Profile, Description, Repository } from '../components';
-// 
 
 class App extends Component {
   constructor(props) {
@@ -49,7 +47,6 @@ class App extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log('===>',result)
           this.setState({
             isLoaded: true,
             repos: result
@@ -65,12 +62,13 @@ class App extends Component {
   }
 
   render() {
-    console.log('=====>>>>>>',  this.state.repos);
     return (
       <div className="container">
+        {this.state.profileDetails &&
         <aside className="aside-bio">
           <Profile user={this.state.profileDetails}></Profile>
         </aside>
+        }
         { this.state.repos &&
           <main className="main-details">
             <Description></Description>
